@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    function swap(arr, i, j) {
+      let tmp = arr[i]
+      arr[i] = arr[j]
+      arr[j] = tmp
+      return arr
+    }
+
+    function partition(arr, l, r) {
+      let j = l,
+        i = l + 1
+      for (i; i <= r; i++) {
+        if (arr[i] < arr[l]) {
+          j++
+          swap(arr, i, j)
+        }
+      }
+      swap(arr, l, j)
+      return j
+    }
+
+    function quickSort(arr, l, r) {
+      //最基本情况就是当需要排序的区间不存在或只有一个元素时直接结束
+      if (l >= r) {
+        return
+      }
+      let k = partition(arr, l, r)
+      quickSort(arr, l, k - 1)
+      quickSort(arr, k + 1, r)
+    }
+
+    let arr = [5, 3, 1, 7, 4, 11, 2]
+    quickSort(arr, 0, arr.length - 1)
+    console.log(arr)
+
+  </script>
+</body>
+
+</html>
